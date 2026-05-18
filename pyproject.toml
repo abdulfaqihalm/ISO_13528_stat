@@ -1,0 +1,48 @@
+[project]
+name = "mutu-alga"
+version = "0.1.0"
+description = "Algorithm A — ISO 13528-style robust statistics for proficiency testing"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "streamlit>=1.32.0",
+    "openpyxl>=3.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pre-commit>=3.7",
+    "ruff>=0.4",
+]
+
+# ── pytest ───────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"
+
+# ── ruff (linter + formatter) ─────────────────────────────────────────────────
+[tool.ruff]
+line-length    = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+]
+ignore = [
+    "E501",  # line too long — formatter handles this
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["alg_a"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
